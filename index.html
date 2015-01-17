@@ -1,0 +1,40 @@
+<html>
+<head>
+</head>
+
+<body>
+
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script>
+
+var media_channels = {'fox': 'UCXIJgqnII2ZOINSWNOGFThA', 'ajam': 'UCNye-wNBqNL5ZzHSJj3l8Bg', 'msnbc': 'UCaXkIU1QidjPwiAYu6GcHjg', 'vox': 'UCLXo7UDZvByw2ixzpQCufnA'}
+var data; // a global
+
+function get_data(topic){
+    var all_vids = [];
+    for(i in media_channels){
+        d3.json("https://www.googleapis.com/youtube/v3/search?key=AIzaSyA71HMnXOa-je23QCJ0EHtajCfZiog2U9g&channelId="+media_channels[i]+"&part=snippet&maxResults=50&order=date&q="+topic+"", function(error, json) {
+            if (error) return console.warn(error);
+            data = json;
+            console.log(data.items[0]['snippet']['channelTitle']);
+            console.log(data.items, data.items.length)
+            for(x in data.items){
+                var basics = data.items[x]['snippet'];
+                console.log(basics.publishedAt)
+                console.log(basics.title)
+                console.log(basics.description)
+            }
+
+        });
+    }
+}
+
+get_data(window.location.hash.replace('#', ''))
+
+</script>
+
+
+</body>
+
+</html>
