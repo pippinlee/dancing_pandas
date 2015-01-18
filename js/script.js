@@ -10,7 +10,12 @@ function timelineHover() {
     d3.json("data/data.json", function(error, json) {
         if (error) return console.warn(error);
         data = json[hashed];
-        console.log(data)
+
+        var first_item = data[0]['times'][0];
+        console.log(first_item)
+        var arry = first_item.url.split('=');
+        d3.select('#vid-frame').attr('src' , '//www.youtube.com/embed/'+arry[1]);
+
 
         var chart = d3.timeline()
         .stack()
@@ -21,9 +26,9 @@ function timelineHover() {
             div.find('.coloredDiv').css('background-color', colors(i))
             div.find('#name').text(datum.label);
         })
-        .click(function (d, i, datum) {
-            alert(datum.label);
-        })
+        // .click(function (d, i, datum) {
+        //     alert(datum.label);
+        // })
         .scroll(function (x, scale) {
             $("#scrolled_date").text(scale.invert(x) + " to " + scale.invert(x+width));
         });

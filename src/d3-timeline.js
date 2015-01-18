@@ -210,21 +210,6 @@
               .attr("height", itemHeight);
           }
 
-          // might be easiest to serach, enter, and append the svg images that way
-          for(i in datum.times){
-              console.log(datum.times[i]['thumb']);
-          }
-        //   function appendLine(lineScale, lineFormat) {
-        //       console.log('appendline')
-        //       gParent.append("svg:line")
-        //       .attr("x1", lineScale)
-        //       .attr("y1", lineFormat.marginTop)
-        //       .attr("x2", lineScale)
-        //       .attr("y2", height - lineFormat.marginBottom)
-        //       .style("stroke", lineFormat.color)//"rgb(6,120,155)")
-        //       .style("stroke-width", lineFormat.width);
-        //   }
-
           function getStackPosition(d, i) {
             if (stacked) {
               return margin.top + (itemHeight + itemMargin) * yAxisMapping[index];
@@ -248,7 +233,12 @@
               return d.thumb;
           })
           .attr("width", margin.left)
-          .attr("height", itemHeight);
+          .attr("height", itemHeight)
+          .on("click", function (d, i) {
+              var arry = d.url.split('=');
+              d3.select('#vid-frame').attr('src' , '//www.youtube.com/embed/'+arry[1]);
+            //   click(d, index, datum);
+          })
 
         });
       });
