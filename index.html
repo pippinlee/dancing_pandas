@@ -24,43 +24,38 @@ var labelColorTestData = [
 var width = 1000;
 
 function timelineHover() {
-    var chart = d3.timeline()
-    // .width(width*4)
-    .stack()
-    .margin({left:70, right:30, top:0, bottom:0})
-    .hover(function (d, i, datum) {
-        var div = $('#hoverRes');
-        var colors = chart.colors();
-        div.find('.coloredDiv').css('background-color', colors(i))
-        div.find('#name').text(datum.label);
-    })
-    .click(function (d, i, datum) {
-        alert(datum.label);
-    })
-    .scroll(function (x, scale) {
-        $("#scrolled_date").text(scale.invert(x) + " to " + scale.invert(x+width));
+    var hashed = window.location.hash.replace('#', '');
+    console.log(hashed)
+
+
+    d3.json("data/data.json", function(error, json) {
+        if (error) return console.warn(error);
+        data = json[hashed];
+        console.log(data)
+
+        var chart = d3.timeline()
+        .stack()
+        .margin({left:70, right:30, top:0, bottom:0})
+        .hover(function (d, i, datum) {
+            var div = $('#hoverRes');
+            var colors = chart.colors();
+            div.find('.coloredDiv').css('background-color', colors(i))
+            div.find('#name').text(datum.label);
+        })
+        .click(function (d, i, datum) {
+            alert(datum.label);
+        })
+        .scroll(function (x, scale) {
+            $("#scrolled_date").text(scale.invert(x) + " to " + scale.invert(x+width));
+        });
+
+        var svg = d3.select("#timeline3").append("svg").attr("width", width)
+        .datum(data).call(chart);
+
     });
-
-    var svg = d3.select("#timeline3").append("svg").attr("width", width)
-    .datum(labelTestData).call(chart);
 }
-//
-// function timelineLabelColor() {
-//     var chart = d3.timeline()
-//     .beginning(1355752800000) // we can optionally add beginning and ending times to speed up rendering a little
-//     .ending(1355774400000)
-//     .stack() // toggles graph stacking
-//     .margin({left:70, right:30, top:0, bottom:0})
-//     ;
-//     var svg = d3.select("#timeline6").append("svg").attr("width", width)
-//     .datum(labelColorTestData).call(chart);
-// }
-
-    // .rotateTicks(45);
-
 
 timelineHover();
-// timelineLabelColor();
 
 }
 </script>
