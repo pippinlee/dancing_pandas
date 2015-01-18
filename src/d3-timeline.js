@@ -124,19 +124,10 @@
           var hasLabel = (typeof(datum.label) != "undefined");
           var hasId = (typeof(datum.id) != "undefined");
 
+// Try here
+        //  var greenbarYAxis = ((itemHeight + itemMargin) * yAxisMapping[index]);
 
-          if (backgroundColor) {
-            var greenbarYAxis = ((itemHeight + itemMargin) * yAxisMapping[index]);
-            g.selectAll("svg").data(data).enter()
-              .insert("rect")
-              .attr("class", "row-green-bar")
-              .attr("x", 0 + margin.left)
-              .attr("width", width - margin.right - margin.left)
-              .attr("y", greenbarYAxis)
-              .attr("height", itemHeight)
-              .attr("fill", backgroundColor)
-            ;
-          }
+
 
           g.selectAll("svg").data(data).enter()
             .append(display)
@@ -219,6 +210,21 @@
               .attr("height", itemHeight);
           }
 
+          // might be easiest to serach, enter, and append the svg images that way
+          for(i in datum.times){
+              console.log(datum.times[i]['thumb']);
+          }
+        //   function appendLine(lineScale, lineFormat) {
+        //       console.log('appendline')
+        //       gParent.append("svg:line")
+        //       .attr("x1", lineScale)
+        //       .attr("y1", lineFormat.marginTop)
+        //       .attr("x2", lineScale)
+        //       .attr("y2", height - lineFormat.marginBottom)
+        //       .style("stroke", lineFormat.color)//"rgb(6,120,155)")
+        //       .style("stroke-width", lineFormat.width);
+        //   }
+
           function getStackPosition(d, i) {
             if (stacked) {
               return margin.top + (itemHeight + itemMargin) * yAxisMapping[index];
@@ -231,6 +237,19 @@
             }
             return margin.top + itemHeight * 0.75;
           }
+
+          g.selectAll("svg").data(data).enter()
+          .append("image")
+          .attr("transform", function(d){
+
+              return "translate("+ getXPos(d,i) +","+ (margin.top + (itemHeight + itemMargin) * yAxisMapping[index])+")";
+          })
+          .attr("xlink:href", function(d){
+              return d.thumb;
+          })
+          .attr("width", margin.left)
+          .attr("height", itemHeight);
+          
         });
       });
 
@@ -325,7 +344,12 @@
         // if both are set, do nothing
       }
 
+      //Well, something like this
+
+      //I think that this is where we need to append the image to the svg
+      //needs svg tag
       function appendLine(lineScale, lineFormat) {
+          console.log('appendline')
         gParent.append("svg:line")
           .attr("x1", lineScale)
           .attr("y1", lineFormat.marginTop)
