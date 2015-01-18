@@ -13,7 +13,7 @@
         height = null,
         rowSeperatorsColor = null,
         backgroundColor = null,
-        tickFormat = { format: d3.time.format("%I %p"),
+        tickFormat = { format: d3.time.format("%m/%d/%y"),
           tickTime: d3.time.hours,
           tickInterval: 1,
           tickSize: 6 },
@@ -109,7 +109,7 @@
         .scale(xScale)
         .orient(orient)
         .tickFormat(tickFormat.format)
-        .ticks(tickFormat.numTicks || tickFormat.tickTime, tickFormat.tickInterval)
+        .ticks(5)
         .tickSize(tickFormat.tickSize);
 
       g.append("g")
@@ -249,7 +249,7 @@
           })
           .attr("width", margin.left)
           .attr("height", itemHeight);
-          
+
         });
       });
 
