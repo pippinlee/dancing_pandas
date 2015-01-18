@@ -48,7 +48,18 @@ with open('actual_data.csv', 'rU') as csvfile:
 
                 spec_data = {"title": z[0], "url": z[1], "thumb": z[3], "starting_time": js_date, "ending_time": js_date+86400000}
                 times_array.append(spec_data)
-            xj_array.append({'label': j, 'times': times_array })
+            if j == 'Fox':
+                img = 'images/fox.png'
+            elif j == 'Vox':
+                img = 'images/vox.png'
+            elif j == 'MSNBC':
+                img = 'images/MSNBC.png'
+            elif j == 'The Daily Show':
+                img = 'images/dailyshow.png'
+            elif j == 'Al Jazeera English':
+                img = 'images/Al_Jazeera.png'
+
+            xj_array.append({'label': j, 'icon': img, 'times': times_array })
         formatted_dict.setdefault(x, xj_array)
 
 

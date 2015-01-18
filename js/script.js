@@ -1,5 +1,9 @@
 window.onload = function() {
 
+// var img_data= [
+// {'org': 'Al Jazeera English', 'image': }
+// ]
+
 var width = 1000;
 
 function timelineHover() {

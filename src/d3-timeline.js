@@ -177,6 +177,15 @@
             })
           ;
 
+          if (datum.icon) {
+              gParent.append("image")
+              .attr("class", "timeline-label")
+              .attr("transform", "translate("+ 0 +","+ (margin.top + (itemHeight + itemMargin) * yAxisMapping[index])+")")
+              .attr("xlink:href", datum.icon)
+              .attr("width", 100)
+              .attr("height", 50);
+          }
+
           if (rowSeperatorsColor) {
             var lineYAxis = ( itemHeight + itemMargin / 2 + margin.top + (itemHeight + itemMargin) * yAxisMapping[index]);
             gParent.append("svg:line")
@@ -201,14 +210,7 @@
               });
           }
 
-          if (typeof(datum.icon) !== "undefined") {
-            gParent.append("image")
-              .attr("class", "timeline-label")
-              .attr("transform", "translate("+ 0 +","+ (margin.top + (itemHeight + itemMargin) * yAxisMapping[index])+")")
-              .attr("xlink:href", datum.icon)
-              .attr("width", margin.left)
-              .attr("height", itemHeight);
-          }
+
 
           function getStackPosition(d, i) {
             if (stacked) {
@@ -334,10 +336,6 @@
         // if both are set, do nothing
       }
 
-      //Well, something like this
-
-      //I think that this is where we need to append the image to the svg
-      //needs svg tag
       function appendLine(lineScale, lineFormat) {
           console.log('appendline')
         gParent.append("svg:line")
