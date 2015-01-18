@@ -12,7 +12,6 @@ function timelineHover() {
         data = json[hashed];
 
         var first_item = data[0]['times'][0];
-        console.log(first_item)
         var arry = first_item.url.split('=');
         d3.select('#vid-frame').attr('src' , '//www.youtube.com/embed/'+arry[1]);
 
@@ -25,12 +24,6 @@ function timelineHover() {
             var colors = chart.colors();
             div.find('.coloredDiv').css('background-color', colors(i))
             div.find('#name').text(datum.label);
-        })
-        // .click(function (d, i, datum) {
-        //     alert(datum.label);
-        // })
-        .scroll(function (x, scale) {
-            $("#scrolled_date").text(scale.invert(x) + " to " + scale.invert(x+width));
         });
 
         var svg = d3.select("#timeline3").append("svg").attr("width", width)
