@@ -26,7 +26,7 @@
         stacked = false,
         rotateTicks = false,
         timeIsRelative = false,
-        itemHeight = 20,
+        itemHeight = 60,
         itemMargin = 5,
         showTodayLine = false,
         showTodayFormat = {marginTop: 25, marginBottom: 0, width: 1, color: colorCycle},
@@ -307,16 +307,16 @@
 
       function setWidth() {
         if (!width && !gParentSize.width) {
-          try { 
+          try {
             width = gParentItem.attr("width");
             if (!width) {
               throw "width of the timeline is not set. As of Firefox 27, timeline().with(x) needs to be explicitly set in order to render";
-            }            
+            }
           } catch (err) {
             console.log( err );
           }
         } else if (!(width && gParentSize.width)) {
-          try { 
+          try {
             width = gParentItem.attr("width");
           } catch (err) {
             console.log( err );

@@ -75,23 +75,23 @@ function timelineHover() {
     var svg = d3.select("#timeline3").append("svg").attr("width", width)
     .datum(labelTestData).call(chart);
 }
-
-function timelineLabelColor() {
-    var chart = d3.timeline()
-    .beginning(1355752800000) // we can optionally add beginning and ending times to speed up rendering a little
-    .ending(1355774400000)
-    .stack() // toggles graph stacking
-    .margin({left:70, right:30, top:0, bottom:0})
-    ;
-    var svg = d3.select("#timeline6").append("svg").attr("width", width)
-    .datum(labelColorTestData).call(chart);
-}
+//
+// function timelineLabelColor() {
+//     var chart = d3.timeline()
+//     .beginning(1355752800000) // we can optionally add beginning and ending times to speed up rendering a little
+//     .ending(1355774400000)
+//     .stack() // toggles graph stacking
+//     .margin({left:70, right:30, top:0, bottom:0})
+//     ;
+//     var svg = d3.select("#timeline6").append("svg").attr("width", width)
+//     .datum(labelColorTestData).call(chart);
+// }
 
     // .rotateTicks(45);
 
 
 timelineHover();
-timelineLabelColor();
+// timelineLabelColor();
 
 }
 </script>
