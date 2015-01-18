@@ -17,7 +17,7 @@ def utf_8_encoder(unicode_csv_data):
         yield line.encode('utf-8')
 
 # csvfile = unicode_csv_reader(open('test_data.csv'))
-with open('test_data.csv', 'rU') as csvfile:
+with open('actual_data.csv', 'rU') as csvfile:
     fp = csv.reader(csvfile, delimiter=',', quotechar='"')
 
     csvfile.readline()
