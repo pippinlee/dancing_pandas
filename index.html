@@ -45,13 +45,6 @@ var labelTestData = [
 {label: "VOX", times: [{"starting_time": 1355761910000, "ending_time": 1355763910000}]},
 ];
 
-// var iconTestData = [
-// {icon: "jackie.png", times: [{"starting_time": 1355752800000, "ending_time": 1355759900000}, {"starting_time": 1355767900000, "ending_time": 1355774400000}]},
-// {icon: "troll.png", times: [{"starting_time": 1355759910000, "ending_time": 1355761900000}, ]},
-// {icon: "wat.png", times: [{"starting_time": 1355761910000, "ending_time": 1355763910000}]},
-// ];
-// .datum(iconTestData).call(chart);
-
 var labelColorTestData = [
 {label: "FOX", times: [{"color":"green", "label":"Weeee", "starting_time": 1355752800000, "ending_time": 1355759900000}, {"color":"blue", "label":"Weeee", "starting_time": 1355767900000, "ending_time": 1355774400000}]},
 {label: "MSNBC", times: [{"color":"pink", "label":"Weeee", "starting_time": 1355759910000, "ending_time": 1355761900000}, ]},
@@ -96,26 +89,10 @@ function timelineLabelColor() {
 
     // .rotateTicks(45);
 
-// function timelineRelativeTime() {
-//     //This solution is for relative time is from
-//     //http://stackoverflow.com/questions/11286872/how-do-i-make-a-custom-axis-formatter-for-hours-minutes-in-d3-js
-//     var chart = d3.timeline()
-//     .relativeTime()
-//     .tickFormat({
-//         format: function(d) { return d3.time.format("%H:%M")(d) },
-//         tickTime: d3.time.minutes,
-//         tickInterval: 30,
-//         tickSize: 15,
-//     });
-//
-//     var svg = d3.select("#timelineRelativeTime").append("svg").attr("width", width)
-//     .datum(testDataRelative).call(chart);
-//     console.log(testDataRelative);
-// }
 
 timelineHover();
 timelineLabelColor();
-// timelineRelativeTime();
+
 }
 </script>
 </head>
@@ -130,16 +107,6 @@ timelineLabelColor();
             <div id="scrolled_date"></div>
         </div>
     </div>
-
-    <!-- <div>
-        <h3>We can change colors and put labels</h3>
-        <div id="timeline6"></div>
-    </div> -->
-
-    <!-- <div>
-        <h3>A timeline with relative timepoints</h3>
-        <div width="100%" id="timelineRelativeTime"></div>
-    </div> -->
 
 </body>
 
